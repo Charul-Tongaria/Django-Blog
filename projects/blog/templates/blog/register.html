@@ -1,0 +1,22 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="content-section col-md-8 col-md-offset-2" style="margin: auto;">
+  {% if msg%}
+    <h1>{{msg}}</h1>
+  {%endif%}
+  <form method="POST" enctype="multipart/form-data" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
+    {% csrf_token %}
+    <fieldset class="form-group">
+      {{form.media}}
+      {{ form.as_p}}
+    </fieldset>
+    <center>
+      <br>
+      <button type="submit" class=" s btn btn-secondary">Register</button>    </center>
+    <br />
+    <sub><a href="/blog/login" style="text-decoration: none; color: blue; padding:3%; cursor:pointer;">Already have an account ?</a></sub>
+  </form>
+</div>
+{% endblock %}

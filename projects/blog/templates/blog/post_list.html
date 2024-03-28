@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<hr style="width:100%;text-align:left;margin-left:0">
+    {% for post in posts %}
+        
+        <article class="post">
+            <time class="date">
+                {{ post.published_date }}
+            
+            </time>
+            {%if post.image%}
+                <a href="{% url 'blog:post_detail' slug=post.slug %}" ><img src="{{post.image.url}}" width=50 height=50></a>
+            {%endif%}
+            <h5>Category: {{post.category}}</h5>
+
+            <h2>Title:   <a href="{% url 'blog:post_detail' slug=post.slug %}" > {{ post.title }}</a></h2>
+            <p  class="article-content ">{{ post.text|truncatewords:"35"|linebreaks }}</p>
+            
+            <h5>Tags:
+                
+                    {% for tag in post.tag.all %}
+                        <a href='' style="text-decoration:none; font-size:0.4cm; ">#{{tag.name}}</a>
+                    {%endfor%}
+                
+            </h5>
+        </article>
+        <hr style="width:100%;text-align:left;margin-left:0">
+    {% endfor %}
+{% endblock %}

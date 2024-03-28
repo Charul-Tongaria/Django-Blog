@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for t in tag %}
+        
+        <article class="post">
+            <time class="date">
+                {{ t.created_date }}
+            </time>
+            <h2><a href="{% url 'blog:tag_ind' slug=t.slug %}">{{ t.name }}</a></h2>
+           
+        </article>
+    {% endfor %}
+{% endblock %}
