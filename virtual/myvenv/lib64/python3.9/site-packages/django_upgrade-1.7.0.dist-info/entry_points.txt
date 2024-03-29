@@ -1,0 +1,2 @@
+[console_scripts]
+django-upgrade = django_upgrade.main:main
