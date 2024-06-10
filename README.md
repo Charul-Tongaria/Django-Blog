@@ -95,6 +95,10 @@ Technologies used in the project:
 *   Django
 *   Django ORM
 
+<h2>Like my work?</h2>
+
+If you encounter any problems or have questions about this project please feel free to open an issue on GitHub.
+
 <!--![Screenshot from 2022-08-06 13-17-35](https://github.com/Charul-Tongaria/Django-Blog/assets/109429009/b8c166aa-ddaa-48fb-b6fe-fa769ec7b6c7)
 ![Screenshot from 2022-08-06 13-17-38](https://github.com/Charul-Tongaria/Django-Blog/assets/109429009/ed283593-525a-41ac-a4d6-c50fbbf24753)
 ![Screenshot from 2022-08-06 13-17-46](https://github.com/Charul-Tongaria/Django-Blog/assets/109429009/d8e7ed9a-3ec2-42d5-91b7-b722d546dd61)
