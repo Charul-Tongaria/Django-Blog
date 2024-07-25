@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<hr style="width:100%;text-align:left;margin-left:0">
+    
+        <article class="post">
+            {%if user.image%}
+                <img src="{{user.image.url}}" style="max-width:25%; max-height:25%;">
+            {%endif%}
+            <h2>Username: {{user.username}}</h2>
+            <h2>Email: {{user.email}}</h2>
+            
+            <aside class="actions">
+                <a class="btn btn-secondary" href="{% url 'blog:profile_edit' %}">
+                    Change
+                </a>
+            </aside>
+        </article>
+        <hr style="width:100%;text-align:left;margin-left:0">
+    
+{% endblock %}

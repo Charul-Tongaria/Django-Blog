@@ -1,0 +1,860 @@
+{% extends 'blog/base.html' %}
+{% block content %} 
+    <article class="post">
+        {% if user.is_authenticated %}
+        <aside class="actions">
+            <a class="btn btn-secondary" href="{% url 'blog:post_del' slug=post.slug %}">
+                DELETE
+            </a>
+        </aside>
+        <aside class="actions">
+            <a class="btn btn-secondary" href="{% url 'blog:post_edit' slug=post.slug %}">
+                UPDATE
+            </a>
+        </aside>
+        {%endif%}
+        {%if post.image%}
+            <img src="{{post.image.url}}" style="max-width:40%; max-height:40%;">
+        {%endif%}
+        {% if post.published_date %}
+            <time class="date">
+                {{ post.published_date }}
+            </time>
+        {% endif %}
+        <h5>Category: {{post.category}}</h5>
+        <h2>Title: {{ post.title }}</h2>
+        <p>{{ post.text|linebreaksbr }}</p>
+        <h5>Tags:
+        {%if post.tag.all is not none%}
+            {% for tag in post.tag.all %}
+            <a href='' style="text-decoration:none; font-size:0.4cm;">#{{tag.name}}</a>
+            {%endfor%}
+        {%endif%}
+    </h5>
+    </article>
+    <br>
+    <br>
+    <aside class="actions">
+        <h3 style="text-decoration:none; color:red; font-weight:50;">
+            COMMENTS
+        </h3>
+    </aside>
+    <hr>
+    {% if not comments %}
+             <small>No comments to display</small>
+        {% endif %}
+    {% for comment in comments %}
+    <article class="post">
+      <p class="font-weight-bold">
+        <time class="date" style="font-size:0.3cm; font-family: 'Courier New', Courier, monospace;">
+            Author : {{ comment.author }}
+            <br>
+            {{ comment.created_on }}     
+        </time>
+        <br>
+        </p>
+        <h5 style="font-weight:bold;">-> {{ comment.text }}</h5>
+        <aside class="actions>"
+            <h3 style="text-decoration:none; color:red; font-weight:50; font-size:0.4cm; float:left;">
+                REPLIES
+            </h3>
+        </aside>
+            <br>    <hr width=300>
+        {% for reply in comment.replies.all %}
+        <article class="post">
+          <p class="font-weight-bold">
+            <time class="date" style=" font-family: 'Courier New', Courier, monospace; font-size:0.3cm;">
+                Author : {{ reply.author }}
+                <h5 style="font-size:0.4cm; font-weight:bold;"> {{ reply.text }}</h5>                   
+            </time>
+            </p>
+        </article>
+        {% endfor %}
+        <form method="POST"  id="configform" class="post-form2">{% csrf_token %}
+            {{ form.as_p }}
+            <input type="hidden" name="comment_id" value="{{comment.id}}">
+            <button type="submit" class=" btn btn-secondary" id="configreset" >REPLY</button>
+        </form>
+    </article>
+    <hr>
+    {% endfor %}           
+        <form method="POST" action="." id="configform" class="post-form3" style="margin-top:1cm;">{% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class=" btn btn-secondary" id="configreset" >Comment</button>        
+        </form>       
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
